@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 
 const CarCreation = () => {
 	const [cars, setCars] = useState([]);
-	const [brands, setbrands] = useState([]);
+	const [brands, setBrands] = useState([]);
 	const [carToAdd, setCarToAdd] = useState({id: null, model: null, price: null, dateOfCirculation: null, brand:null, brandId: null});
     const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ const CarCreation = () => {
 	const getBrands = async() => {
 		await axios.get("https://formation.inow.fr/demo/api/v1/brands")
 		.then((resp) => {
-			setbrands(resp?.data);
+			setBrands(resp?.data);
 			console.log(brands, "brands");
 		})
 		.catch((err) => {
@@ -52,6 +52,7 @@ const CarCreation = () => {
 			let idBrand = brands.find((brand => brand.name === obj.brand))
 			obj.brandId = idBrand.id
 			obj.price = Number(obj.price)
+			obj.brand = null
 			obj.dateOfCirculation = new Date(obj.dateOfCirculation)
 			console.log("obj.dateOfCirculation: ", obj.dateOfCirculation);
 			// console.log("idBrand: ", idBrand);
