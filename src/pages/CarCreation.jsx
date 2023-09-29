@@ -7,19 +7,8 @@ import { useNavigate } from "react-router";
 const CarCreation = () => {
 	const [cars, setCars] = useState([]);
 	const [brands, setBrands] = useState([]);
-	const [carToAdd, setCarToAdd] = useState({id: null, model: null, price: null, dateOfCirculation: null, brand:null, brandId: null});
+	const [carToAdd, setCarToAdd] = useState({ model: null, price: null, dateOfCirculation: null, brandID: null});
     const navigate = useNavigate();
-
-	const generateNumericId = (min, max) => {
-		let excludeIds = cars?.map((car) => car.id);
-		let uniqueId;
-
-		do {
-			uniqueId = Math.floor(Math.random() * (max - min + 1)) + min;
-		} while (excludeIds.includes(uniqueId));
-
-		return uniqueId;
-	};
 
 	const getCars = async() => {
 		await axios.get("https://formation.inow.fr/demo/api/v1/cars")
@@ -47,19 +36,22 @@ const CarCreation = () => {
 		try {
 			e.preventDefault();
 			let obj = {...carToAdd}
-			// console.log("obj IN submit: ", obj);
-			obj.id = generateNumericId(1, 1000)
+
 			let idBrand = brands.find((brand => brand.name === obj.brand))
-			obj.brandId = idBrand.id
-			obj.price = Number(obj.price)
-			obj.brand = null
+			obj.brandID = idBrand.id
 			obj.dateOfCirculation = new Date(obj.dateOfCirculation)
-			console.log("obj.dateOfCirculation: ", obj.dateOfCirculation);
-			// console.log("idBrand: ", idBrand);
+
+			console.log("obj fin: ", obj);
 			setCarToAdd(obj)
-			console.log(carToAdd, "carToAdd");
-			
-			let send = await axios.post('https://formation.inow.fr/demo/api/v1/cars', carToAdd)
+
+			let objToSend = {
+				model:carToAdd.model,
+				price : carToAdd.price,
+				dateOfCirculation:carToAdd.dateOfCirculation,
+				brandID: carToAdd.brandID
+
+			}
+			let send = await axios.post('https://formation.inow.fr/demo/api/v1/cars', objToSend)
 			console.log("send: ", send);
 			navigate('/');
 		} catch (error) {
@@ -70,7 +62,8 @@ const CarCreation = () => {
 
 	const changeFormField = (ev) => {
         const obj = {...carToAdd}
-		obj[ev.target.name] = ev.target.name === 'price' ? Number(ev.target.value) : ev.target.value;        setCarToAdd(obj)
+		obj[ev.target.name] = ev.target.name === 'price' ? Number(ev.target.value) : ev.target.value;        
+		setCarToAdd(obj)
         // console.log("obj: ", obj);
         return obj
     }

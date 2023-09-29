@@ -13,8 +13,6 @@ const CarCard = ({key, car}) => {
             Mise en circulation : {car.dateOfCirculation.split('T')[0]}<br/>
             Prix : {car.price} €
         </Card.Text>
-        {/* <Card.Link href="#">Card Link</Card.Link> */}
-        {/* <Card.Link href="#">Another Link</Card.Link> */}
         <Link to={`/details/${car.model}`} className="btn btn-primary">Voir les autres voitures de {car.brand}</Link>
       </Card.Body>
     </Card>

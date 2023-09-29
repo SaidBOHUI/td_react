@@ -69,15 +69,6 @@ const CarAdmin = () => {
 	return (
 		<div className="container">
 			{showAlert && <AlertConfirm fonctionToLaunch={() => handleDelete(selectedCarId)} />}
-			<button
-				className="btn btn-primary mt-5"
-				onClick={() => {
-					/* goToCreate */
-				}}
-			>
-				Ajouter
-			</button>
-
 			<div className="mt-5">
 				<table className="table">
 					<thead>
@@ -135,6 +126,16 @@ const CarAdmin = () => {
 						))}
 					</tbody>
 				</table>
+			</div>
+			<div className= "text-center">
+				<button
+					className="btn btn-primary mt-5 mb-5"
+					onClick={() => {
+						/* goToCreate */
+					}}
+				>
+					Add a car
+				</button>
 			</div>
 		</div>
 	);
