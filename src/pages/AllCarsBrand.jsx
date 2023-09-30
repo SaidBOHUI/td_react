@@ -30,11 +30,11 @@ const AllCarsBrand = () => {
 
 	// console.log(carBrand, "carBrand");
 	return (
-		<div className="d-flex flex-wrap justify-content-start p-auto">
+		<div className="d-flex flex-wrap justify-content-start">
 			{carBrand.map((car, key) => {
                 console.log(car.dateOfCirculation, "dateOfCirculation");
 				return (
-					<Card className="m-4" >
+					<Card className='col-2 m-4' >
 						<Card.Body>
 							<Card.Title>{car.model}</Card.Title>
 							<Card.Subtitle className="mb-2 text-muted">

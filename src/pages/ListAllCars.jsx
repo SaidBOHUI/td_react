@@ -18,12 +18,14 @@ const [cars, setCars] = useState([]);
 
   return (
     <>
-      <div style={{display:'flex', justifyContent:'space-around', margin: '5rem auto'}}>
+      <div className='d-flex flex-wrap justify-content-start'>
         {cars.map((car, key) => {
-          return (<CarCard key={key} car={car}/>)
+          return (<CarCard  key={key} car={car}/>)
         })}
       </div>    
-      <Link to={"/cars/creation"} className="btn btn-warning" size="lg">Add a car</Link>
+      <div className='text-center m-5'>
+        <Link to={"/cars/creation"} className="btn btn-warning" size="lg">Add a car</Link>
+      </div>
 
     </>
   )

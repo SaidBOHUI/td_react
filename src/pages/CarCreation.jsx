@@ -36,6 +36,8 @@ const CarCreation = () => {
 		try {
 			e.preventDefault();
 			let obj = {...carToAdd}
+			console.log("obj D2BUT: ", obj);
+			// console.log("obj IN submit: ", obj);
 
 			let idBrand = brands.find((brand => brand.name === obj.brand))
 			obj.brandID = idBrand.id
@@ -71,8 +73,8 @@ const CarCreation = () => {
 
 
 	useEffect(() => {
-		getCars();
 		getBrands();
+		getCars();
 	}, []);
 
 	return (

@@ -25,10 +25,13 @@ const Header = () => {
 						<Link to={"/cars"} className="nav-link">
 							Cars
 						</Link>
-						<Link to={"/about"} className="nav-link">
-							About
+						<Link to={"/cars/admin"} className="nav-link">
+							Admin
 						</Link>
-						<NavDropdown title="Dropdown" id="basic-nav-dropdown">
+						<Link to={"/login"} className="nav-link">
+							Login
+						</Link>
+						{/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
 							<NavDropdown.Item href="#vaction/3.1">Action</NavDropdown.Item>
 							<NavDropdown.Item href="#action/3.2">
 								Another action
@@ -38,7 +41,7 @@ const Header = () => {
 							<NavDropdown.Item href="#action/3.4">
 								Separated link
 							</NavDropdown.Item>
-						</NavDropdown>
+						</NavDropdown> */}
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

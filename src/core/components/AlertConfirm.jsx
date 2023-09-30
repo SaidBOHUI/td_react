@@ -8,7 +8,7 @@ const AlertConfirm = ({fonctionToLaunch}) => {
 
     return (
         <>
-            <Alert show={show} variant="warning">
+            <Alert show={show} variant="warning" className='absolute-top'>
                 <Alert.Heading>Alerte Suppression</Alert.Heading>
                 <p>
                     Vous vous apprétez à supprimer cette voiture : Êtes-vous sûr de votre choix ?

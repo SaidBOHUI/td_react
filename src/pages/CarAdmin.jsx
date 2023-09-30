@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import AlertConfirm from "../core/components/AlertConfirm";
+import { Link } from "react-router-dom";
 
 const CarAdmin = () => {
 	const [cars, setCars] = useState([]);
@@ -12,8 +13,9 @@ const CarAdmin = () => {
 	const handleDelete = async(id) => {
 		try {
 			await axios.delete(`https://formation.inow.fr/demo/api/v1/cars/${id}`)
-			console.log("return voiture Supprimée");
+			console.log(`return voiture id: ${id} Supprimée`);
 			setShowAlert(false)
+			getCars()
 		} catch (error) {
 			console.log(error, "error");
 			return error
@@ -45,8 +47,8 @@ const CarAdmin = () => {
 	};
 
 	useEffect(() => {
-		getCars();
 		getBrands();
+		getCars();
 	}, []);
 
 	useEffect(() => {
@@ -75,23 +77,16 @@ const CarAdmin = () => {
 						<tr>
 							<th>Modèle</th>
 							<th>marque</th>
-							{/* ... autres en-têtes */}
 							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
 						{carsWithBrands.map((car, key) => (
 							<tr key={key}>
-								<td>{`${car.model} ${car.model}`}</td>
+								<td>{`${car.model}`}</td>
 								<td>{car.brand}</td>
-								{/* ... autres cellules */}
 								<td>
-									<button
-										className="btn btn-primary"
-										onClick={() => {
-											/* goToEdit */
-										}}
-									>
+									<Link to={`/cars/edit/${car.id}`} className="btn btn-primary" size="lg">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											width="16"
@@ -102,7 +97,8 @@ const CarAdmin = () => {
 										>
 											<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
 										</svg>
-									</button>
+									</Link>
+
 									<button
 										className="btn btn-danger"
 										onClick={() => {
@@ -127,16 +123,9 @@ const CarAdmin = () => {
 					</tbody>
 				</table>
 			</div>
-			<div className= "text-center">
-				<button
-					className="btn btn-primary mt-5 mb-5"
-					onClick={() => {
-						/* goToCreate */
-					}}
-				>
-					Add a car
-				</button>
-			</div>
+			<div className='text-center m-5'>
+        		<Link to={"/cars/creation"} className="btn btn-warning" size="lg">Add a car</Link>
+      		</div>
 		</div>
 	);
 };

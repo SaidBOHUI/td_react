@@ -21,7 +21,7 @@ const MainRoutes = () => {
                     <Route index caseSensitive element={<ListAllCars />} />
                     <Route path=":idMarque" element={<AllCarsBrand />} />
                     <Route path="creation" element={<CarCreation />} />
-                    <Route path="edit" element={<EditCar />} />
+                    <Route path="edit/:idCar" element={<EditCar />} />
                     <Route path="admin" element={<CarAdmin />} />
                 </Route>
                 <Route path="/auth/login" caseSensitive element={<Login />} />
